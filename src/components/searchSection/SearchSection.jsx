@@ -1,20 +1,16 @@
+import { useContext } from "react"
+import { SearchContext } from "../../context/state/searchSection/SearchProvider"
 import CheckBox from "../shared/CheckBox"
 import Container from "../shared/Container"
 
-const checkBoxOption = [
-  {
-    label: 'One Way',
-    defaultChecked: true,
-  },
-  {
-    label: 'Round Trip',
-  },
-  {
-    label: 'Multi City',
-  },
-]
+
 
 export default function SearchSection() {
+
+  const { state } = useContext(SearchContext)
+
+  // console.log(state.tripTypes)
+  // console.log(state.tripTypes)
 
   return (
     <Container>
@@ -22,7 +18,7 @@ export default function SearchSection() {
         <div className="card-body">
 
           <div className="flex gap-5 mb-3">
-            {checkBoxOption.map(checkbox => <CheckBox key={checkbox.label} label={checkbox.label} />)}
+            {state.tripTypes.map(checkbox => <CheckBox key={checkbox?._id} {...checkbox} name="tripType" />)}
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-4  lg:gap-0">
@@ -86,7 +82,7 @@ export default function SearchSection() {
           <div>
             <span>Fare Type: </span>
             <div>
-              
+
             </div>
           </div>
         </div>

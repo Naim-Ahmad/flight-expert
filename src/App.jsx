@@ -1,6 +1,7 @@
 import Footer from './components/footer/Footer'
 import Navbar from './components/navbar/Navbar'
 import SearchSection from './components/searchSection/SearchSection'
+import SearchProvider from './context/state/searchSection/SearchProvider'
 
 
 function App() {
@@ -8,9 +9,11 @@ function App() {
 
   return (
     <>
-     <Navbar/>
-     <SearchSection/>
-     <Footer/>
+      <Navbar />
+      <SearchProvider>
+        <SearchSection />
+      </SearchProvider>
+      <Footer />
     </>
   )
 }

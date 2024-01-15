@@ -6,14 +6,16 @@ import TripTypePriceRange from "./TripTypePriceRange";
 export default function FilterSection() {
 
   return (
+
     <div className="card card-compact shadow-lg">
-      <CountDownSession/>
+      <CountDownSession />
       <div className="divider my-0 h-0"></div>
-      <TripTypePriceRange/>
+      <TripTypePriceRange />
       <div className="divider my-0 h-0"></div>
-      <DepartureTime/>
+      <DepartureTime />
       <div className="divider my-0 h-0"></div>
-      <Others/>
+      <Others />
     </div>
+
   )
 }

@@ -13,18 +13,18 @@ export default function Radio(props) {
   let classes;
 
   if (props.checked) {
-    classes = 'radio radio-error border-[7px] checked:bg-slate-100'
+    classes = 'radio radio-error border-[4px] sm:border-[7px]  checked:bg-slate-100'
   } else {
     classes = 'radio border-gray-400 border-2'
   }
 
   return (
     <div onClick={handleClick}>
-      <label htmlFor={props.name} className="flex items-center gap-2 text-gray-500 font-semibold">
+      <label htmlFor={props.name} className="flex items-center gap-1 sm:gap-2 text-gray-500 text-sm sm:text-base font-semibold">
         <input
           type="radio"
           name={props.name}
-          className={classes}
+          className={`${classes} radio-xs sm:radio-md`}
           checked={props.checked}
           readOnly
         />

@@ -20,14 +20,14 @@ export default function SearchHeader() {
       <div className="flex flex-col w-full lg:flex-row p-3 shadow-md mb-6 rounded-md">
         <div className="grid flex-grow card bg-[#F4F7FA] hover:bg-[#F4F7FA] rounded-md place-items-start px-4 py-3">
           <h2 className="text-xl text-gray-800">Cheapest</h2>
-          <p className="text-base text-gray-500">
+          <p className="text-base hidden md:block text-gray-500">
             To get cheapest available flight
           </p>
         </div>
         <div className="divider lg:divider-horizontal"></div>
         <div className="grid flex-grow card hover:bg-[#F4F7FA] rounded-md place-items-start px-4 py-3">
           <h2 className="text-xl text-gray-800">Shortest</h2>
-          <p className="text-base text-gray-500">
+          <p className="text-base text-gray-500 hidden md:block">
             To get the shortest available flight
           </p>
         </div>

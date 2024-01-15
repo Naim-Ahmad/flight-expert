@@ -1,3 +1,4 @@
+import SearchHeader from './components/SearchResultSection/SearchHeader'
 import SearchResult from './components/SearchResultSection/SearchResult'
 import FilterSection from './components/filterSection/FilterSection'
 import Footer from './components/footer/Footer'
@@ -18,12 +19,19 @@ function App() {
       </SearchProvider>
       <Container className="mt-10">
         <main className='lg:flex gap-5'>
-          <div className='w-2/5'>
+          <div className='w-2/6'>
             <FilterSection />
           </div>
 
-          <div className='w-3/4'>
-            <SearchResult />
+          <div className='w-5/6'>
+            <SearchHeader/>
+            <div className='flex flex-col gap-6'>
+              <SearchResult />
+              <SearchResult />
+              <SearchResult />
+              <SearchResult />
+              <SearchResult />
+            </div>
           </div>
         </main>
       </Container>

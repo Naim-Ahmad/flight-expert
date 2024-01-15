@@ -6,13 +6,13 @@ export default function Checkbox(props = {checked: true}) {
     // dispatch(ChangeCheckbox({ ...props, checked: true }))
   }
 
-  let classes;
+  // let classes;
 
-  if (true) {
-    classes = ''
-  } else {
-    classes = ' border-gray-400 border-2'
-  }
+  // if (true) {
+  //   classes = ''
+  // } else {
+  //   classes = ' border-gray-400 border-2'
+  // }
 
   return (
     <div onClick={handleClick}>
@@ -20,9 +20,7 @@ export default function Checkbox(props = {checked: true}) {
         <input
           type="checkbox"
           name={props.name}
-          className={`${classes} checkbox checkbox-sm`}
-          checked={true}
-          readOnly
+          className={` checkbox checkbox-sm`}
         />
         {props.label}
       </label>

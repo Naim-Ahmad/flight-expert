@@ -1,1 +1,1 @@
-export const CHECKBOX = "searchSection/checkbox";
+export const CHECKBOX = "tripTypes/checkbox";

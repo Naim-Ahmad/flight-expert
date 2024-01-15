@@ -1,10 +1,12 @@
 import { useContext } from "react";
-import { SearchContext } from "../../context/state/searchSection/SearchProvider";
+import { GlobalStateContext } from "../../context/state/GlobalStateProvider";
 import { ChangeCheckbox } from '../../context/state/searchSection/actions';
 
 export default function Radio(props) {
 
-  const { dispatch } = useContext(SearchContext)
+  const { dispatch } = useContext(GlobalStateContext)
+
+  // console.log(dispatch)
 
   const handleClick = () => {
     dispatch(ChangeCheckbox({ ...props, checked: true }))

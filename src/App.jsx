@@ -6,7 +6,6 @@ import Footer from './components/footer/Footer'
 import Navbar from './components/navbar/Navbar'
 import SearchSection from './components/searchSection/SearchSection'
 import Container from './components/shared/Container'
-import SearchProvider from './context/state/searchSection/SearchProvider'
 
 function App() {
 
@@ -14,10 +13,8 @@ function App() {
   return (
     <>
       <Navbar />
-      <SearchProvider>
-        <SearchSection />
-      </SearchProvider>
-      <Container className="mt-10">
+      <SearchSection />
+      <Container className="mt-20">
         <main className='lg:flex gap-5'>
           <div className='hidden lg:block lg:w-2/6'>
             <FilterSection />

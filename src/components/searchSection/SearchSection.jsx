@@ -3,15 +3,17 @@ import { BsPencilSquare } from "react-icons/bs";
 import { FaRegCircle } from "react-icons/fa";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 import { MdOutlineDone } from "react-icons/md";
-import { SearchContext } from "../../context/state/searchSection/SearchProvider";
+import { RiArrowDownSLine } from "react-icons/ri";
+import { GlobalStateContext } from "../../context/state/GlobalStateProvider";
 import useToggle from "../../hooks/useToggle";
+import Button from "../shared/Button";
 import Container from "../shared/Container";
 import CheckBox from "../shared/Radio";
 import SearchInputBox from "./SearchInputBox";
 
 export default function SearchSection() {
 
-  const { state } = useContext(SearchContext)
+  const { state } = useContext(GlobalStateContext)
   const [fareType, setFareType] = useState('regular')
   const [show, showHandler] = useToggle(false)
 
@@ -19,17 +21,17 @@ export default function SearchSection() {
 
   useEffect(() => {
     if (window.innerWidth > 1070) {
-      showHandler(()=> true)
+      showHandler(() => true)
     } else {
-      showHandler(()=> false)
+      showHandler(() => false)
     }
 
     const eventHandler = () => {
       // console.log(window.innerWidth)
       if (window.innerWidth > 1070) {
-        showHandler(()=> true)
+        showHandler(() => true)
       } else {
-        showHandler(()=> false)
+        showHandler(() => false)
       }
     }
 
@@ -41,8 +43,8 @@ export default function SearchSection() {
 
   return (
     <Container>
-
-      <div onClick={()=> showHandler()} className='card shadow-md bg-[#F3F6FA] card-compact rounded-md -mb-4 lg:hidden'>
+      {/* will be show this div on mobile device */}
+      <div onClick={() => showHandler()} className='card shadow-md bg-[#F3F6FA] card-compact rounded-md -mb-14 lg:hidden'>
         <div className="card-body flex-row justify-between items-center">
           <div className='text-xl font-bold flex flex-col'>
             <span className="text-xl font-bold">Dhaka - Chittagong</span>
@@ -55,7 +57,7 @@ export default function SearchSection() {
         </div>
       </div>
 
-      {show && <div className="card bg-base-100 shadow-xl">
+      {show && <div className="card bg-base-100 mt-12 lg:mt-0 shadow-xl">
         <div className="card-body px-2 sm:px-4">
           {/* HEADER */}
           <div className="flex gap-4 sm:gap-5 mb-3">
@@ -95,7 +97,7 @@ export default function SearchSection() {
                 <div className="flex-1">
                   <div>
                     <SearchInputBox className="!rounded-r-none">
-                      <span className="text-sm text-gray-600">Departure</span>
+                      <span className="text-sm text-gray-600 flex gap-1 items-center">Departure <RiArrowDownSLine size={25} /></span>
                       <span className="text-xl text-gray-700 font-bold">14 jan 24</span>
                       <span className="text-xs text-gray-600 tracking-wide">shahamanot international</span>
                     </SearchInputBox>
@@ -105,8 +107,9 @@ export default function SearchSection() {
                 <div className="flex-1">
                   <div className="">
                     <SearchInputBox className="!rounded-l-none">
-                      <span className="text-sm text-gray-600">Return</span>
-                      <span className="text-sm text-gray-700 pb-2">Tap to book return ticket</span>
+                      <span className="text-sm text-gray-600 flex gap-1 items-center">Return
+                        <RiArrowDownSLine size={25}/></span>
+                      {<span className="text-sm text-gray-700 pb-2">Tap to book return ticket</span>}
                       <span className="text-xs text-gray-600 tracking-wide">For more saving</span>
                     </SearchInputBox>
                   </div>
@@ -124,13 +127,7 @@ export default function SearchSection() {
               </SearchInputBox>
             </div>
 
-            {/* <div>
-              <SearchInputBox>
-                <span className="text-sm text-gray-600">From</span>
-                <span className="text-xl text-gray-700 font-bold">Dhaka</span>
-                <span className="text-xs text-gray-600 tracking-wide">shahamanot international</span>
-              </SearchInputBox>
-            </div> */}
+            <Button className="px-16 w-full block lg:hidden">Search </Button>
           </div>
 
           {/* FOOTER */}
@@ -141,7 +138,7 @@ export default function SearchSection() {
                 {/* icon */}
                 <div>
                   {
-                    fareType === 'regular' ? <MdOutlineDone className="bg-red-500 rounded-full p-[1px]" size={16} color="white" /> : <FaRegCircle />
+                    fareType === 'regular' ? <MdOutlineDone className="bg-red-500 rounded-full p-[1px]" size={16} color="white" /> : <FaRegCircle size={16} />
                   }
 
                 </div>
@@ -158,6 +155,9 @@ export default function SearchSection() {
                 <span>Seaman Fares</span>
               </div>
             </div>
+          </div>
+          <div className="-mb-14 text-center hidden lg:block">
+            <Button className="px-16">Search </Button>
           </div>
         </div>
       </div>}

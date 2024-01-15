@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { SearchContext } from "../../context/state/searchSection/SearchProvider"
-import CheckBox from "../shared/CheckBox"
+import CheckBox from "../shared/Radio"
 import Container from "../shared/Container"
 
 
@@ -8,9 +8,6 @@ import Container from "../shared/Container"
 export default function SearchSection() {
 
   const { state } = useContext(SearchContext)
-
-  // console.log(state.tripTypes)
-  // console.log(state.tripTypes)
 
   return (
     <Container>

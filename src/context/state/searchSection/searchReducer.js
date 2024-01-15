@@ -32,7 +32,6 @@ export default function searchReducer(state, action) {
       return {
         ...state,
         tripTypes: state.tripTypes.map((tripType) => {
-          console.log(tripType);
           if (tripType.checked) {
             return {
               ...tripType,

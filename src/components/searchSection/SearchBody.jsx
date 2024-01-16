@@ -42,7 +42,7 @@ export default function SearchBody({ trip, ind }) {
           <span className="text-xs text-gray-600 tracking-wide">{trip.from.airport}</span>
 
           {/* destination toggler */}
-          <div onClick={() => dispatch(swapDestination({ id: trip.id }))} className="w-14 h-14 lg:w-10 lg:h-10 absolute right-2 lg:-right-5 bg-white mt-14 rotate-90 lg:rotate-0 lg:mt-3 text-red-500 cursor-pointer -space-y-1 border shadow-md rounded-full flex flex-col items-center justify-center">
+          <div onClick={() => dispatch(swapDestination({ id: trip.id }))} className="w-14 h-14 lg:w-10 lg:h-10 absolute right-10 lg:-right-5 bg-white mt-24  rotate-90 lg:rotate-0 lg:mt-1 text-red-500 cursor-pointer -space-y-1 border shadow-md rounded-full flex flex-col items-center justify-center">
             <FaArrowRightLong />
             <FaArrowLeftLong />
           </div>

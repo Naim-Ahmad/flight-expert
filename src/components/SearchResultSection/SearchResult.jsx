@@ -15,7 +15,7 @@ export default function SearchResult() {
       .then(data => setFlightData(data))
   }, [])
 
-  console.log(flightData)
+  // console.log(flightData)
 
 
   return (

@@ -20,7 +20,7 @@ export default function Checkbox(props = {checked: true}) {
         <input
           type="checkbox"
           name={props.name}
-          className={` checkbox checkbox-sm`}
+          className={`checkbox checkbox-sm`}
         />
         {props.label}
       </label>

@@ -1,15 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { BsPencilSquare } from "react-icons/bs";
 import { FaRegCircle } from "react-icons/fa";
-import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 import { MdOutlineDone } from "react-icons/md";
-import { RiArrowDownSLine } from "react-icons/ri";
 import { GlobalStateContext } from "../../context/state/GlobalStateProvider";
 import useToggle from "../../hooks/useToggle";
 import Button from "../shared/Button";
 import Container from "../shared/Container";
 import CheckBox from "../shared/Radio";
-import SearchInputBox from "./SearchInputBox";
+import SearchBody from "./SearchBody";
 
 export default function SearchSection() {
 
@@ -17,7 +15,8 @@ export default function SearchSection() {
   const [fareType, setFareType] = useState('regular')
   const [show, showHandler] = useToggle(false)
 
-  // console.log(show)
+  // console.log(activeStripType)
+  console.log(state)
 
   useEffect(() => {
     if (window.innerWidth > 1070) {
@@ -65,70 +64,9 @@ export default function SearchSection() {
           </div>
 
           {/* BODY */}
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-3 lg:gap-0">
-            {/* COL 1 */}
-            <div className="relative">
-              <SearchInputBox className="relative">
-                <span className="text-sm text-gray-600">From</span>
-                <span className="text-xl text-gray-700 font-bold">Dhaka</span>
-                <span className="text-xs text-gray-600 tracking-wide">shahamanot international</span>
-
-                {/* destination toggler */}
-                <div className="w-14 h-14 lg:w-10 lg:h-10 absolute right-2 lg:-right-5 bg-white mt-14 rotate-90 lg:rotate-0 lg:mt-3 text-red-500 cursor-pointer -space-y-1 border shadow-md rounded-full flex flex-col items-center justify-center">
-                  <FaArrowRightLong />
-                  <FaArrowLeftLong />
-                </div>
-              </SearchInputBox>
-
-            </div>
-            {/* COL 2 */}
-            <div>
-              <SearchInputBox className="pl-7">
-                <span className="text-sm text-gray-600">To</span>
-                <span className="text-xl text-gray-700 font-bold">Chittagong</span>
-                <span className="text-xs text-gray-600 tracking-wide">shahamanot international</span>
-              </SearchInputBox>
-            </div>
-            {/* COL 3 */}
-            <div className="card lg:col-span-2 lg:mx-2">
-
-              <div className="flex flex-row py-0">
-
-                <div className="flex-1">
-                  <div>
-                    <SearchInputBox className="!rounded-r-none">
-                      <span className="text-sm text-gray-600 flex gap-1 items-center">Departure <RiArrowDownSLine size={25} /></span>
-                      <span className="text-xl text-gray-700 font-bold">14 jan 24</span>
-                      <span className="text-xs text-gray-600 tracking-wide">shahamanot international</span>
-                    </SearchInputBox>
-                  </div>
-                </div>
-
-                <div className="flex-1">
-                  <div className="">
-                    <SearchInputBox className="!rounded-l-none">
-                      <span className="text-sm text-gray-600 flex gap-1 items-center">Return
-                        <RiArrowDownSLine size={25}/></span>
-                      {<span className="text-sm text-gray-700 pb-2">Tap to book return ticket</span>}
-                      <span className="text-xs text-gray-600 tracking-wide">For more saving</span>
-                    </SearchInputBox>
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-            {/* COL 4 */}
-            <div>
-              <SearchInputBox>
-                <span className="text-sm text-gray-600">Travelers & Booking Class</span>
-                <span className="text-xl text-gray-700 font-bold">1 Traveler</span>
-                <span className="text-xs text-gray-600 tracking-wide">Tap to book return ticket</span>
-              </SearchInputBox>
-            </div>
-
-            <Button className="px-16 w-full block lg:hidden">Search </Button>
-          </div>
+          {
+            state.multiTrips?.map(trip => <SearchBody key={trip.id} trip={trip} />)
+          }
 
           {/* FOOTER */}
           <div className="flex flex-col sm:flex-row items-center gap-3">

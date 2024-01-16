@@ -24,7 +24,7 @@ export const initialState = [
 export default function tripTypesReducer(state, action) {
   switch (action.type) {
     case CHECKBOX: {
-      // console.log(action.payload);
+      // console.log("tripType action payload", action.payload);
       // console.log("trip tipes state ", state);
       return state.map((tripType) => {
         if (tripType.checked) {
@@ -35,12 +35,14 @@ export default function tripTypesReducer(state, action) {
         } else if (action.payload?._id == tripType?._id) {
           return {
             ...tripType,
-            checked: action.payload,
+            checked: action.payload.checked,
           };
         } else {
           return tripType;
         }
       });
     }
+    default:
+      return state;
   }
 }

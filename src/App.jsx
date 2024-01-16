@@ -8,8 +8,7 @@ import SearchSection from './components/searchSection/SearchSection'
 import Container from './components/shared/Container'
 
 function App() {
-
-
+  
   return (
     <>
       <Navbar />

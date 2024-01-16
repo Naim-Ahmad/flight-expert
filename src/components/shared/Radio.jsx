@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { GlobalStateContext } from "../../context/state/GlobalStateProvider";
-import { ChangeCheckbox } from '../../context/state/searchSection/actions';
+import { ChangeCheckbox } from '../../context/state/tripTypes/actions';
 
 export default function Radio(props) {
 

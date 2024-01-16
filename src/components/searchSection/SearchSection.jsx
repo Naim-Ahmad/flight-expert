@@ -15,7 +15,7 @@ export default function SearchSection() {
   const [show, showHandler] = useToggle(false)
 
   // console.log(activeStripType)
-  console.log(state)
+  // console.log(state)
 
   useEffect(() => {
     if (window.innerWidth > 1070) {

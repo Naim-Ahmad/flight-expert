@@ -1,4 +1,5 @@
 import { CiFilter } from "react-icons/ci"
+import { IoMdClose } from "react-icons/io"
 import SearchHeader from './components/SearchResultSection/SearchHeader'
 import SearchResult from './components/SearchResultSection/SearchResult'
 import FilterSection from './components/filterSection/FilterSection'
@@ -11,7 +12,7 @@ function App() {
 
   return (
     <>
-      <Container>
+      <Container className="overflow-x-hidden">
         <Navbar />
         <SearchSection />
         <main className='lg:flex gap-5 mt-20'>
@@ -21,9 +22,14 @@ function App() {
 
           <div className="lg:hidden">
             <dialog id="my_modal_4" className="modal">
-              <div className="modal-box w-11/12 max-w-5xl">
+              <div className="modal-box p-0 w-11/12 max-w-5xl">
+                <div className="modal-action mt-0">
+                  <form method="dialog">
+                    {/* if there is a button in form, it will close the modal */}
+                    <button className="btn btn-ghost"><IoMdClose  size={20}/></button>
+                  </form>
+                </div>
                 <FilterSection />
-
               </div>
               <form method="dialog" className="modal-backdrop">
                 <button>close</button>

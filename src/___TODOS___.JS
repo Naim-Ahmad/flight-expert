@@ -4,5 +4,7 @@
  * 3. SEE DETAILS SECTION
  * 4. CREATE MODIFY SEARCH BUTTON
  * 5. MAKE RESPONSIVE SEARCH RESULT CARD F
+ * 5. MAKE overflow hidden
+ * 5. fix modal
  *
  */

@@ -8,6 +8,13 @@ body {
   font-family: "Nunito Sans", sans-serif;
 }
 
+#checkbox {
+  width: 1rem;
+  height: 1rem;
+  accent-color: red;
+  border-radius: 1rem;
+}
+
 .tooltip::before {
   color: white !important;
   font-weight: 700;

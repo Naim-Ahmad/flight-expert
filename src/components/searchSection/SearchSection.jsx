@@ -5,7 +5,6 @@ import { MdOutlineDone } from "react-icons/md";
 import { GlobalStateContext } from "../../context/state/GlobalStateProvider";
 import useToggle from "../../hooks/useToggle";
 import Button from "../shared/Button";
-import Container from "../shared/Container";
 import CheckBox from "../shared/Radio";
 import SearchBody from "./SearchBody";
 
@@ -40,9 +39,9 @@ export default function SearchSection() {
 
 
   return (
-    <Container>
+    <>
       {/* will be show this div on mobile device */}
-      <div onClick={() => showHandler()} className='card shadow-md bg-[#F3F6FA] card-compact rounded-md -mb-14 lg:hidden'>
+      <div onClick={() => showHandler()} className='shadow-md bg-[#F3F6FA] card-compact rounded-md -mb-14 mt-5 lg:hidden'>
         <div className="card-body flex-row justify-between items-center">
           <div className='text-xl font-bold flex flex-col'>
             <span className="text-xl font-bold">Dhaka - Chittagong</span>
@@ -55,7 +54,7 @@ export default function SearchSection() {
         </div>
       </div>
 
-      {show && <div className="card bg-base-100 mt-12 lg:mt-0 shadow-xl">
+      {show && <div className="card mt-12 lg:mt-0 shadow-xl">
         <div className="card-body px-2 sm:px-4">
           {/* HEADER */}
           <div className="flex gap-4 sm:gap-5 mb-3">
@@ -98,6 +97,6 @@ export default function SearchSection() {
           </div>
         </div>
       </div>}
-    </Container>
+    </>
   )
 }

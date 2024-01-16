@@ -8,13 +8,13 @@ import SearchSection from './components/searchSection/SearchSection'
 import Container from './components/shared/Container'
 
 function App() {
-  
+
   return (
     <>
-      <Navbar />
-      <SearchSection />
-      <Container className="mt-20">
-        <main className='lg:flex gap-5'>
+      <Container className="">
+        <Navbar />
+        <SearchSection />
+        <main className='lg:flex gap-5 mt-20'>
           <div className='hidden lg:block lg:w-2/6'>
             <FilterSection />
           </div>
@@ -49,8 +49,8 @@ function App() {
             </div>
           </div>
         </main>
+        <Footer />
       </Container>
-      <Footer />
     </>
   )
 }

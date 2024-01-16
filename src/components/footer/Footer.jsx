@@ -4,12 +4,11 @@ import basis from '../../assets/footer/basis.png';
 import dunc from '../../assets/footer/duns.png';
 import google from '../../assets/footer/google-logo.svg';
 import ita from '../../assets/footer/iata.png';
-import Container from "../shared/Container";
 
 export default function Footer() {
 
   return (
-    <Container>
+    <footer>
       <section className="footer grid-flow-row lg:grid-flow-col-dense py-10 mt-10">
         <aside>
           <img src={websiteLogo} alt="" />
@@ -72,6 +71,6 @@ export default function Footer() {
           <p >Copyright @2024 FEBD Ltd. All rights reserved by Flight Expert</p>
         </aside>
       </section>
-    </Container>
+    </footer>
   )
 }

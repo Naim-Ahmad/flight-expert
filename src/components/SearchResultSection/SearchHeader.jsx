@@ -4,16 +4,16 @@ export default function SearchHeader() {
 
   return (
     <div>
-      <div className="flex justify-between">
+      <div className="flex justify-between mb-5">
         {/* icon */}
         <div className="tooltip tooltip-bottom tooltip-error !text-white" data-tip="Search for previous day flight">
-          <IoMdArrowDropleft size={50} color="red" />
+          <IoMdArrowDropleft className="text-2xl md:text-4xl" color="red" />
         </div>
         {/* header */}
-        <header className="text-3xl font-bold text-gray-900">Flights from Dhaka to Chittagong</header>
+        <header className="sm:text-3xl font-bold text-gray-900">Flights from Dhaka to Chittagong</header>
         {/* icon */}
         <div className="tooltip tooltip-bottom tooltip-error !text-white" data-tip="Search for next day flight">
-          <IoMdArrowDropright size={50} color="red" />
+          <IoMdArrowDropright className="text-2xl md:text-4xl" color="red" />
         </div>
       </div>
 

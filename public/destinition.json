@@ -1,0 +1,32 @@
+[
+  {
+    "airport": "Hazrat Shahjalal International Airport",
+    "village": "Kadamtali",
+    "country": "Bangladesh"
+  },
+  {
+    "airport": "Shah Amanat International Airport",
+    "village": "Shah Amanat Nagar",
+    "country": "Bangladesh"
+  },
+  {
+    "airport": "Osmani International Airport",
+    "village": "Akhaura",
+    "country": "Bangladesh"
+  },
+  {
+    "airport": "Shah Makhdum Airport",
+    "village": "Shah Makhdum",
+    "country": "Bangladesh"
+  },
+  {
+    "airport": "Saidpur Airport",
+    "village": "Saidpur",
+    "country": "Bangladesh"
+  },
+  {
+    "airport": "Cox's Bazar Airport",
+    "village": "Cox's Bazar",
+    "country": "Bangladesh"
+  }
+]

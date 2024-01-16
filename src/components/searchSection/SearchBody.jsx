@@ -1,69 +1,111 @@
 import moment from "moment";
-import { useContext } from "react";
+import { useContext, useRef, useState } from "react";
 import { BsPlusCircleFill } from "react-icons/bs";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 import { RiArrowDownSLine } from "react-icons/ri";
 import { GlobalStateContext } from "../../context/state/GlobalStateProvider";
 import { addTrip, swapDestination } from "../../context/state/multiStrip/actions";
-import useToggle from "../../hooks/useToggle";
 import Button from "../shared/Button";
+import DropDownList from "./DropDownList";
 import SearchInputBox from "./SearchInputBox";
+
+
 
 export default function SearchBody({ trip, ind }) {
 
+  const initialState = {
+    from: false,
+    to: false,
+    "return": false,
+    departure: false,
+    travelers: false
+  }
+
   const { state, dispatch } = useContext(GlobalStateContext)
 
-  const [isShowList, showListHandler] = useToggle()
+  const fromRef = useRef()
 
-  console.log(isShowList)
+
+  const [showMenuList, setShowMenuList] = useState(initialState)
+
+  // console.log(isShowList)
   const activeStripType = state.tripTypes.find(trip => trip.checked)
 
+  const handleShowMenu = (target) => {
 
-  // console.log(moment(trip.departure).format('DD MMM YY'))
+    // setShowMenuList((state) => {
+    //   Object.keys(state).forEach(key => state[key] : )
+    // })
+    switch (target) {
+      case "from":
+        setShowMenuList({ ...initialState, from: !showMenuList.from })
+        break;
+      case "to":
+        setShowMenuList({ ...initialState, to: !showMenuList.to })
+        break
+      case "return":
+        setShowMenuList({ ...initialState, "return": !showMenuList.return })
+        break
+      case "departure":
+        setShowMenuList({ ...initialState, departure: !showMenuList.departure })
+        break
+      case "travelers":
+        setShowMenuList({ ...initialState, travelers: !showMenuList.travelers })
+        break
+    }
+
+  }
 
   const handleAddTrip = () => {
     dispatch(addTrip())
   }
 
-  const handleShowList = e => {
-    console.log(e)
-    showListHandler()
+  const changeDest = (e) => {
+    e.stopPropagation()
+    dispatch(swapDestination({ id: trip.id }))
+
   }
 
-  // console.log(isShowList, showListHandler)
+  // console.log(showMenuList)
 
   return (
-    <div className={`grid ${activeStripType.label === 'Multi City' ? "lg:grid-cols-4" : "lg:grid-cols-5"} grid-cols-1 gap-3 lg:gap-0`}>
+    <div id="parent" className={`grid ${activeStripType.label === 'Multi City' ? "lg:grid-cols-4" : "lg:grid-cols-5"} grid-cols-1 gap-3 lg:gap-0`}>
       {/* COL 1 */}
-      <div className="relative">
-        <SearchInputBox onClick={handleShowList} className="relative">
+      <div onClick={() => handleShowMenu('from')} className={`${showMenuList.from && 'bg-[#DFEBFE]'} relative`} >
+        <SearchInputBox className="relative">
           <span className="text-sm text-gray-600">From</span>
-          <span className="text-xl text-gray-700 font-bold">{trip.from.city?.split(',')[0]}</span>
+          <span ref={fromRef} className="text-xl text-gray-700 font-bold">{trip.from.city?.split(',')[0]}</span>
           <span className="text-xs text-gray-600 tracking-wide">{trip.from.airport}</span>
 
           {/* destination toggler */}
-          <div onClick={() => dispatch(swapDestination({ id: trip.id }))} className="w-14 h-14 lg:w-10 lg:h-10 absolute right-10 lg:-right-5 bg-white mt-24  rotate-90 lg:rotate-0 lg:mt-1 text-red-500 cursor-pointer -space-y-1 border shadow-md rounded-full flex flex-col items-center justify-center">
+          <div onClick={changeDest} className="w-14 h-14 lg:w-10 z-10 lg:h-10 absolute right-10 lg:-right-5 bg-white mt-24  rotate-90 lg:rotate-0 lg:mt-1 text-red-500 cursor-pointer -space-y-1 border shadow-md rounded-full flex flex-col items-center justify-center">
             <FaArrowRightLong />
             <FaArrowLeftLong />
           </div>
         </SearchInputBox>
+
+
+        {showMenuList.from && <DropDownList/>}
       </div>
 
       {/* COL 2 */}
-      <div>
+      <div className={`${showMenuList.to && 'bg-[#DFEBFE]'} relative`} onClick={() => handleShowMenu('to')}>
         <SearchInputBox className="pl-7">
           <span className="text-sm text-gray-600">To</span>
           <span className="text-xl text-gray-700 font-bold">{trip.to.city?.split(',')[0]}</span>
           <span className="text-xs text-gray-600 tracking-wide">{trip.to.airport}</span>
         </SearchInputBox>
+
+        {showMenuList.to && <DropDownList/>}
       </div>
+
       {/* COL 3 */}
       <div className={`card  ${activeStripType.label === 'Multi City' ? "lg:col-span-0" : "lg:col-span-2"} lg:mx-2`}>
 
         <div className="flex flex-row py-0">
 
           <div className="flex-1">
-            <div>
+            <div onClick={() => handleShowMenu('departure')}>
               <SearchInputBox className={activeStripType.label !== "Multi City" && "!rounded-r-none"}>
                 <span className="text-sm text-gray-600 flex gap-1 items-center">Departure <RiArrowDownSLine size={25} /></span>
                 <span className="text-xl text-gray-700 font-bold">{
@@ -80,7 +122,7 @@ export default function SearchBody({ trip, ind }) {
 
           {activeStripType.label !== 'Multi City' &&
             <div className="flex-1">
-              <div className="">
+              <div onClick={() => handleShowMenu('return')} className="">
                 <SearchInputBox className="!rounded-l-none">
                   <span className="text-sm text-gray-600 flex gap-1 items-center">Return
                     <RiArrowDownSLine size={25} /></span>
@@ -98,7 +140,7 @@ export default function SearchBody({ trip, ind }) {
       {/* COL 4 */}
       <div>
         {ind === 0 ?
-          <SearchInputBox>
+          <SearchInputBox onClick={() => handleShowMenu('travelers')}>
             <span className="text-sm text-gray-600">Travelers & Booking Class</span>
             <span className="text-xl text-gray-700 font-bold">1 Traveler</span>
             <span className="text-xs text-gray-600 tracking-wide">Tap to book return ticket</span>

@@ -1,5 +1,6 @@
 import { CiFilter } from "react-icons/ci"
 import { IoMdClose } from "react-icons/io"
+import Pagination from "./components/SearchResultSection/Pagination"
 import SearchHeader from './components/SearchResultSection/SearchHeader'
 import SearchResult from './components/SearchResultSection/SearchResult'
 import FilterSection from './components/filterSection/FilterSection'
@@ -11,8 +12,8 @@ import Container from './components/shared/Container'
 function App() {
 
   return (
-    <>
-      <Container className="overflow-x-hidden">
+    <div className="overflow-x-hidden">
+      <Container >
         <Navbar />
         <SearchSection />
         <main className='lg:flex gap-5 mt-20'>
@@ -26,7 +27,7 @@ function App() {
                 <div className="modal-action mt-0">
                   <form method="dialog">
                     {/* if there is a button in form, it will close the modal */}
-                    <button className="btn btn-ghost"><IoMdClose  size={20}/></button>
+                    <button className="btn btn-ghost"><IoMdClose size={20} /></button>
                   </form>
                 </div>
                 <FilterSection />
@@ -53,11 +54,15 @@ function App() {
               <SearchResult />
               <SearchResult />
             </div>
+            <div className="flex justify-end mt-8">
+              <Pagination />
+            </div>
           </div>
+
         </main>
         <Footer />
       </Container>
-    </>
+    </div>
   )
 }
 

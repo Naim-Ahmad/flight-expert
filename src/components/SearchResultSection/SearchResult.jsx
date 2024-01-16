@@ -66,7 +66,7 @@ export default function SearchResult() {
 
               {/* card action */}
 
-              <div className="flex flex-col w-max my-4 :my-0 justify-between gap-5 lg:gap-0">
+              <div className="flex flex-col w-max my-4 :my-0 justify-between gap-5 xl:gap-0">
                 <Button className="hover:!text-orange-700 btn-sm lg:btn-md w-max">Book Now</Button>
                 <button onClick={() => setShow(!show)} className="text-error font-bold flex gap-2">See Details {!show ? <RiArrowDownSLine size={25} /> : <RiArrowDropUpLine size={25} />}</button>
               </div>

@@ -5,6 +5,7 @@ import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 import { RiArrowDownSLine } from "react-icons/ri";
 import { GlobalStateContext } from "../../context/state/GlobalStateProvider";
 import { addTrip, swapDestination } from "../../context/state/multiStrip/actions";
+import useToggle from "../../hooks/useToggle";
 import Button from "../shared/Button";
 import SearchInputBox from "./SearchInputBox";
 
@@ -12,20 +13,30 @@ export default function SearchBody({ trip, ind }) {
 
   const { state, dispatch } = useContext(GlobalStateContext)
 
+  const [isShowList, showListHandler] = useToggle()
+
+  console.log(isShowList)
   const activeStripType = state.tripTypes.find(trip => trip.checked)
+
 
   // console.log(moment(trip.departure).format('DD MMM YY'))
 
-  const handleAddTrip = ()=>{
+  const handleAddTrip = () => {
     dispatch(addTrip())
   }
 
+  const handleShowList = e => {
+    console.log(e)
+    showListHandler()
+  }
+
+  // console.log(isShowList, showListHandler)
 
   return (
     <div className={`grid ${activeStripType.label === 'Multi City' ? "lg:grid-cols-4" : "lg:grid-cols-5"} grid-cols-1 gap-3 lg:gap-0`}>
       {/* COL 1 */}
       <div className="relative">
-        <SearchInputBox className="relative">
+        <SearchInputBox onClick={handleShowList} className="relative">
           <span className="text-sm text-gray-600">From</span>
           <span className="text-xl text-gray-700 font-bold">{trip.from.city?.split(',')[0]}</span>
           <span className="text-xs text-gray-600 tracking-wide">{trip.from.airport}</span>
@@ -36,8 +47,8 @@ export default function SearchBody({ trip, ind }) {
             <FaArrowLeftLong />
           </div>
         </SearchInputBox>
-
       </div>
+
       {/* COL 2 */}
       <div>
         <SearchInputBox className="pl-7">
@@ -55,8 +66,14 @@ export default function SearchBody({ trip, ind }) {
             <div>
               <SearchInputBox className={activeStripType.label !== "Multi City" && "!rounded-r-none"}>
                 <span className="text-sm text-gray-600 flex gap-1 items-center">Departure <RiArrowDownSLine size={25} /></span>
-                <span className="text-xl text-gray-700 font-bold">{typeof trip.departure === 'string' ? trip.departure : moment(trip.departure.toString()).format('DD MMM YY')}</span>
-                <span className="text-xs text-gray-600 tracking-wide"></span>
+                <span className="text-xl text-gray-700 font-bold">{
+                  typeof trip.departure === 'string' ? trip.departure : moment(trip.departure.toString()).format('DD MMM YY')
+                }</span>
+                <span className="text-xs text-gray-600 tracking-wide">
+                  {
+                    typeof trip.departure === 'string' ? trip.departure : moment(trip.departure.toString()).format('ddd')
+                  }
+                </span>
               </SearchInputBox>
             </div>
           </div>

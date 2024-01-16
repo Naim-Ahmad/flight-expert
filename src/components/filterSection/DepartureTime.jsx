@@ -29,7 +29,7 @@ export default function DepartureTime() {
       <div className="grid grid-cols-2 gap-4">
         {
           departureTimes.map(departureTime => (
-            <div key={departureTime.time} className="card-body items-center border py-0 border-black shadow-md w-40 rounded-md">
+            <div key={departureTime.time} className="card-body items-center border py-0 border-black shadow-md max-w-40 rounded-md">
               {/* icon */}
               { departureTime.icon}
               {/* time */}

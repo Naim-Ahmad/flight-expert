@@ -11,7 +11,7 @@ function App() {
 
   return (
     <>
-      <Container className="">
+      <Container>
         <Navbar />
         <SearchSection />
         <main className='lg:flex gap-5 mt-20'>

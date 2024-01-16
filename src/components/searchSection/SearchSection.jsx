@@ -25,7 +25,7 @@ export default function SearchSection() {
     }
     const eventHandler = () => {
       // console.log(window.innerWidth)
-      if (window.innerWidth > 1070) {
+      if (window.innerWidth > 1030) {
         showHandler(() => true)
       } else {
         showHandler(() => false)

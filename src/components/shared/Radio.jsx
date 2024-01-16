@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { GlobalStateContext } from "../../context/state/GlobalStateProvider";
+import { addNewTrip, oneWayTrip } from "../../context/state/multiStrip/actions";
 import { ChangeCheckbox } from '../../context/state/tripTypes/actions';
 
 export default function Radio(props) {
@@ -10,6 +11,15 @@ export default function Radio(props) {
 
   const handleClick = () => {
     dispatch(ChangeCheckbox({ ...props, checked: true }))
+    if(props.label === 'Multi City'){
+      dispatch(addNewTrip())
+    }
+    if(props.label !== 'Multi City'){
+      dispatch(oneWayTrip())
+    }
+    // if(props.label !== 'Multi City'){
+    //   dispatch()
+    // }
   }
 
   let classes;

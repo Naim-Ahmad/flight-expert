@@ -24,7 +24,6 @@ export default function SearchSection() {
     } else {
       showHandler(() => false)
     }
-
     const eventHandler = () => {
       // console.log(window.innerWidth)
       if (window.innerWidth > 1070) {
@@ -65,7 +64,7 @@ export default function SearchSection() {
 
           {/* BODY */}
           {
-            state.multiTrips?.map(trip => <SearchBody key={trip.id} trip={trip} />)
+            state.multiTrips?.map((trip, ind) => <SearchBody key={trip.id} ind={ind} trip={trip} />)
           }
 
           {/* FOOTER */}

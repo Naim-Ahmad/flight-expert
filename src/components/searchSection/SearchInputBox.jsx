@@ -1,8 +1,10 @@
 
-export default function SearchInputBox({className, children}) {
+export default function SearchInputBox(props) {
+
+  const {className, children} = props
 
   return (
-    <div className={`rounded-lg border flex flex-col py-2 px-4 ${className}`}>
+    <div {...props} className={`rounded-lg border flex flex-col py-2 px-4 h-24 justify-center cursor-pointer ${className}`}>
       {children}
     </div>
   )

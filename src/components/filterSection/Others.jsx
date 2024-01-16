@@ -24,7 +24,7 @@ const airlines = [
 
 function CheckboxWithAmount({ label, amount }) {
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="flex justify-between">
 
       <Checkbox label={label} />
 
@@ -60,6 +60,28 @@ export default function Others() {
         <FilterSubSectionHeader className="mb-3">Refundable
         </FilterSubSectionHeader>
         <Checkbox label="Partially Refundable (11)" />
+      </div>
+
+      <div className="divider my-0 h-0"></div>
+
+
+      <div className="card-body">
+        <div className="flex justify-between  ">
+          <div>
+            <FilterSubSectionHeader className="mb-3 text-normal">Departing from
+            </FilterSubSectionHeader>
+
+            <Checkbox label="DAC" />
+
+          </div>
+
+          <div>
+            <FilterSubSectionHeader className="mb-3 !text-normal">Arriving at
+            </FilterSubSectionHeader>
+            <Checkbox label="CGP" />
+          </div>
+
+        </div>
       </div>
 
       {/* airlines */}

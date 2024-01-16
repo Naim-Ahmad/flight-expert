@@ -12,7 +12,7 @@ export default function SearchHeader() {
         {/* header */}
         <header className="sm:text-3xl font-bold text-gray-900">Flights from Dhaka to Chittagong</header>
         {/* icon */}
-        <div className="tooltip tooltip-bottom-left md:tooltip-bottom tooltip-error !text-white" data-tip="Search for next day flight">
+        <div className="tooltip tooltip-left md:tooltip-bottom tooltip-error !text-white" data-tip="Search for next day flight">
           <IoMdArrowDropright className="text-2xl md:text-4xl" color="red" />
         </div>
       </div>

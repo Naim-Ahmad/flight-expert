@@ -49,7 +49,7 @@ export default function DropDownList(props) {
 
   // console.log(showMenuList)
   const showMenuField = Object.keys(showMenuList).find((key)=> showMenuList[key])
-  console.log(showMenuField)
+  // console.log(showMenuField)
 
   const handleClick = (trip) => {
     // console.log(props.trip.id)

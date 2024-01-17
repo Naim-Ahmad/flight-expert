@@ -1,10 +1,11 @@
 import moment from "moment";
-import { useContext, useRef, useState } from "react";
+import { useContext, useRef } from "react";
 import { BsPlusCircleFill } from "react-icons/bs";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 import { RiArrowDownSLine } from "react-icons/ri";
 import { GlobalStateContext } from "../../context/state/GlobalStateProvider";
 import { addTrip, swapDestination } from "../../context/state/multiStrip/actions";
+import { toggleDropDown } from "../../context/state/showDropDown/action";
 import Button from "../shared/Button";
 import DropDownList from "./DropDownList";
 import SearchInputBox from "./SearchInputBox";
@@ -13,47 +14,18 @@ import SearchInputBox from "./SearchInputBox";
 
 export default function SearchBody({ trip, ind }) {
 
-  const initialState = {
-    from: false,
-    to: false,
-    "return": false,
-    departure: false,
-    travelers: false
-  }
-
   const { state, dispatch } = useContext(GlobalStateContext)
 
   const fromRef = useRef()
 
+  const showMenuList = state.showMenuList;
 
-  const [showMenuList, setShowMenuList] = useState(initialState)
 
-  // console.log(isShowList)
   const activeStripType = state.tripTypes.find(trip => trip.checked)
 
   const handleShowMenu = (target) => {
-
-    // setShowMenuList((state) => {
-    //   Object.keys(state).forEach(key => state[key] : )
-    // })
-    switch (target) {
-      case "from":
-        setShowMenuList({ ...initialState, from: !showMenuList.from })
-        break;
-      case "to":
-        setShowMenuList({ ...initialState, to: !showMenuList.to })
-        break
-      case "return":
-        setShowMenuList({ ...initialState, "return": !showMenuList.return })
-        break
-      case "departure":
-        setShowMenuList({ ...initialState, departure: !showMenuList.departure })
-        break
-      case "travelers":
-        setShowMenuList({ ...initialState, travelers: !showMenuList.travelers })
-        break
-    }
-
+    // console.log(target)
+    dispatch(toggleDropDown({target}))
   }
 
   const handleAddTrip = () => {
@@ -71,8 +43,8 @@ export default function SearchBody({ trip, ind }) {
   return (
     <div id="parent" className={`grid ${activeStripType.label === 'Multi City' ? "lg:grid-cols-4" : "lg:grid-cols-5"} grid-cols-1 gap-3 lg:gap-0`}>
       {/* COL 1 */}
-      <div onClick={() => handleShowMenu('from')} className={`${showMenuList.from && 'bg-[#DFEBFE]'} relative`} >
-        <SearchInputBox className="relative">
+      <div  className={`${showMenuList.from && 'bg-[#DFEBFE]'} relative`} >
+        <SearchInputBox onClick={() => handleShowMenu('from')} className="relative">
           <span className="text-sm text-gray-600">From</span>
           <span ref={fromRef} className="text-xl text-gray-700 font-bold">{trip.from.city?.split(',')[0]}</span>
           <span className="text-xs text-gray-600 tracking-wide">{trip.from.airport}</span>
@@ -85,18 +57,18 @@ export default function SearchBody({ trip, ind }) {
         </SearchInputBox>
 
 
-        {showMenuList.from && <DropDownList/>}
+        {showMenuList.from && <DropDownList trip={trip} />}
       </div>
 
       {/* COL 2 */}
-      <div className={`${showMenuList.to && 'bg-[#DFEBFE]'} relative`} onClick={() => handleShowMenu('to')}>
-        <SearchInputBox className="pl-7">
+      <div className={`${showMenuList.to && 'bg-[#DFEBFE]'} relative`} >
+        <SearchInputBox onClick={() => handleShowMenu('to')}  className="pl-7">
           <span className="text-sm text-gray-600">To</span>
           <span className="text-xl text-gray-700 font-bold">{trip.to.city?.split(',')[0]}</span>
           <span className="text-xs text-gray-600 tracking-wide">{trip.to.airport}</span>
         </SearchInputBox>
 
-        {showMenuList.to && <DropDownList/>}
+        {showMenuList.to && <DropDownList trip={trip}  />}
       </div>
 
       {/* COL 3 */}
@@ -105,8 +77,8 @@ export default function SearchBody({ trip, ind }) {
         <div className="flex flex-row py-0">
 
           <div className="flex-1">
-            <div onClick={() => handleShowMenu('departure')}>
-              <SearchInputBox className={activeStripType.label !== "Multi City" && "!rounded-r-none"}>
+            <div >
+              <SearchInputBox onClick={() => handleShowMenu('departure')} className={activeStripType.label !== "Multi City" && "!rounded-r-none"}>
                 <span className="text-sm text-gray-600 flex gap-1 items-center">Departure <RiArrowDownSLine size={25} /></span>
                 <span className="text-xl text-gray-700 font-bold">{
                   typeof trip.departure === 'string' ? trip.departure : moment(trip.departure.toString()).format('DD MMM YY')

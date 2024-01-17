@@ -1,4 +1,8 @@
+import { useContext } from "react";
 import { FaMagnifyingGlass, FaPlane } from "react-icons/fa6";
+import { GlobalStateContext } from "../../context/state/GlobalStateProvider";
+import { updateTrip } from "../../context/state/multiStrip/actions";
+import { toggleDropDown } from "../../context/state/showDropDown/action";
 
 const destinationData = [
   {
@@ -35,7 +39,27 @@ const destinationData = [
   }
 ]
 
-export default function DropDownList() {
+export default function DropDownList(props) {
+
+  const { state, dispatch } = useContext(GlobalStateContext)
+
+  const {showMenuList} = state;
+
+  // console.log(showMenuList)
+
+  // console.log(showMenuList)
+  const showMenuField = Object.keys(showMenuList).find((key)=> showMenuList[key])
+  console.log(showMenuField)
+
+  const handleClick = (trip) => {
+    // console.log(props.trip.id)
+    dispatch(updateTrip({
+      id: props.trip.id,
+      propertyName: showMenuField,
+      ...trip
+    }))
+    dispatch(toggleDropDown({target: showMenuField}))
+  }
 
   return (
     <ul className="shadow-2xl rounded-lg w-80 absolute bg-white z-10">
@@ -47,7 +71,7 @@ export default function DropDownList() {
       <div className="pt-3">
         {
           destinationData.map(d => (
-            <li key={d.airport} className="flex gap-3 px-4 py-1 hover:bg-gray-300">
+            <li onClick={() => handleClick(d)} key={d.airport} className="flex gap-3 px-4 py-1 hover:bg-gray-300">
               <div>
                 <span className="">
                   <FaPlane color="red" />

@@ -4,6 +4,7 @@ import {
   ADDTRIP,
   ONEWAYTRIP,
   SWAPDESTENITAION,
+  UPDATETRIP,
 } from "./actionTypes";
 const { randomUUID } = new ShortUniqueId({ length: 10 });
 
@@ -28,6 +29,8 @@ export const multiTrips = [
 export default function multiTripReducer(state, action) {
   // console.log("multi trips payload", action);
   // console.log("multi trips state ", state);
+  const payload = action.payload;
+  // console.log("property name", payload);
   switch (action.type) {
     case ADDNEWTRIP: {
       const newTrip = {
@@ -74,6 +77,32 @@ export default function multiTripReducer(state, action) {
     }
     case ONEWAYTRIP: {
       return [...multiTrips];
+    }
+    case UPDATETRIP: {
+      return state.map((trip) => {
+        if (trip.id === action.payload.id && payload.propertyName === "from") {
+          return {
+            ...trip,
+            from: {
+              city: payload.village + ", Bangladesh",
+              airport: payload.airport,
+            },
+          };
+        } else if (
+          trip.id === action.payload.id &&
+          payload.propertyName === "to"
+        ) {
+          return {
+            ...trip,
+            to: {
+              city: payload.village + ", Bangladesh",
+              airport: payload.airport,
+            },
+          };
+        } else {
+          return trip;
+        }
+      });
     }
     default:
       return state;

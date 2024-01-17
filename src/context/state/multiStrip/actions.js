@@ -3,6 +3,7 @@ import {
   ADDTRIP,
   ONEWAYTRIP,
   SWAPDESTENITAION,
+  UPDATETRIP,
 } from "./actionTypes";
 
 export const addTrip = (value) => {
@@ -28,6 +29,13 @@ export const oneWayTrip = (value) => {
 export const addNewTrip = (value) => {
   return {
     type: ADDNEWTRIP,
+    payload: value,
+  };
+};
+
+export const updateTrip = (value) => {
+  return {
+    type: UPDATETRIP,
     payload: value,
   };
 };
